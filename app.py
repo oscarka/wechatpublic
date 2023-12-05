@@ -6,7 +6,7 @@ import xml.etree.ElementTree as ET
 app = Flask(__name__)
 
 # 这里替换成您自己的Token
-WECHAT_TOKEN = 'your_wechat_token'
+WECHAT_TOKEN = 'oscar'
 
 @app.route('/wechat', methods=['GET', 'POST'])
 def wechat():
