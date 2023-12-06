@@ -71,4 +71,5 @@ def wechat():
             return "success"
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    port = int(os.environ.get("PORT", 5000))  # 获取环境变量中的端口，如果没有则默认为5000
+    app.run(host='0.0.0.0', port=port, debug=False)  # 监听所有公共IP，使用指定的端口
