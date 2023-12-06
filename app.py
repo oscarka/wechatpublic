@@ -17,6 +17,10 @@ WECHAT_TOKEN = 'oscar'
 WECHAT_AESKEY = 'aALEFhhfFZz7g26WhrsU2HjQWjQkiQgtNqi5NAzWtj8'
 WECHAT_APPID = 'wx913eb91e3e41654e'
 
+@app.route('/')
+def index():
+    return "Welcome to my WeChat app!"
+    
 @app.route('/status')
 def status():
     return "Service is running!"
