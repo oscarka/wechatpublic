@@ -4,7 +4,7 @@ import xml.etree.ElementTree as ET
 import logging
 import sys
 import os
-
+import time
 
 app = Flask(__name__)
 
@@ -17,10 +17,6 @@ WECHAT_TOKEN = 'oscar'
 WECHAT_AESKEY = 'aALEFhhfFZz7g26WhrsU2HjQWjQkiQgtNqi5NAzWtj8'
 WECHAT_APPID = 'wx913eb91e3e41654e'
 
-@app.route('/')
-def index():
-    return "Welcome to my WeChat app!"
-    
 @app.route('/status')
 def status():
     return "Service is running!"
@@ -31,7 +27,6 @@ def wechat():
         # 记录GET请求的参数
         logger.info("Received GET request with params: %s", request.args)
 
-        # 微信认证
         signature = request.args.get('signature')
         timestamp = request.args.get('timestamp')
         nonce = request.args.get('nonce')
@@ -42,8 +37,8 @@ def wechat():
         data.sort()
         temp = ''.join(data)
         hashcode = hashlib.sha1(temp.encode('utf-8')).hexdigest()
-        
-        # 记录认证结果
+
+        # 验证逻辑
         if hashcode == signature:
             logger.info("Verified GET request successfully.")
             return make_response(echostr)
