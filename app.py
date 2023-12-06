@@ -3,6 +3,8 @@ import hashlib
 import xml.etree.ElementTree as ET
 import logging
 import sys
+import os
+
 
 app = Flask(__name__)
 
